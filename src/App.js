@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 
-const Header = ({ myProps }) => {
-	return <h1>{myProps}</h1>;
+const ListItem = ({ text }) => {
+	return <li>{text}</li>;
+};
+
+const List = ({ items }) => {
+	const result = [];
+
+	for (let i = 0; i < items.length; i++)
+		result.push(<ListItem text={items[i]} />);
+
+	return <ul>{result}</ul>;
 };
 
 const App = () => {
 	const [myState, setMyState] = useState('');
+
 	return (
 		<div>
-			<Header myProps={"Here's my props!"} />
 			<input value={myState} onChange={(e) => setMyState(e.target.value)} />
+			<List items={['pizza', 'skateboard', 'gameboy']} />
 		</div>
 	);
 };
